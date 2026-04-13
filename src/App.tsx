@@ -71,7 +71,7 @@ const App: React.FC = () => {
                   <RegisterForm onRegister={register} onToggleLogin={() => setAuthView('login')} />
                 )}
                 <div className="mt-3 text-muted small text-center">
-                  Demo: admin/admin123 o dueno/dueno123
+                  registrate y crea al menos 3 fincas y registra 3 enfundes ( en registro por semana escoje el domingo para registro y elige un color)
                 </div>
               </div>
             </div>
