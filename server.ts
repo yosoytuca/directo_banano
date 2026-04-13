@@ -556,37 +556,31 @@ app.get('/api/dashboard', authenticateToken, (req: any, res) => {
 
 // --- INTEGRACIÓN VITE ---
 async function startServer() {
-  const isProduction = process.env.NODE_ENV === 'production' || fs.existsSync(path.join(process.cwd(), 'dist'));
+ const isProduction = process.env.NODE_ENV === 'production';
+  const distPath = path.join(process.cwd(), 'dist');
   
-  if (!isProduction) {
-    console.log('Starting in DEVELOPMENT mode (Vite middleware)');
+  if (isProduction) {
+    // EN PRODUCCIÓN (Railway): Servir los archivos ya construidos
+    console.log('Starting in PRODUCTION mode');
+    app.use(express.static(distPath));
+    app.get('*', (req, res, next) => {
+      if (req.path.startsWith('/api')) return next();
+      res.sendFile(path.join(distPath, 'index.html'));
+    });
+  } else {
+    // EN DESARROLLO (Tu PC): Usar Vite
+    console.log('Starting in DEVELOPMENT mode');
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa',
     });
     app.use(vite.middlewares);
-  } else {
-    console.log('Starting in PRODUCTION mode (Static files)');
-    const distPath = path.join(process.cwd(), 'dist');
-    if (fs.existsSync(distPath)) {
-      app.use(express.static(distPath));
-      app.get('*', (req, res) => {
-        res.sendFile(path.join(distPath, 'index.html'));
-      });
-    } else {
-      console.warn('Production mode enabled but dist/ not found. Falling back to Vite middleware.');
-      const vite = await createViteServer({
-        server: { middlewareMode: true },
-        appType: 'spa',
-      });
-      app.use(vite.middlewares);
-    }
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on ${PORT}`);
+  // EL PUERTO: Sin 'localhost', solo el número y 0.0.0.0
+  app.listen(Number(PORT), '0.0.0.0', () => {
+    console.log(`>>> BANANTRACK ACTIVO EN PUERTO: ${PORT}`);
   });
 }
 
 startServer();
-
