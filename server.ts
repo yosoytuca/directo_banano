@@ -553,7 +553,11 @@ app.get('/api/dashboard', authenticateToken, (req: any, res) => {
 
   res.json(result);
 });
-
+// exportar basedatos
+app.get('/api/export-db', (req, res) => {
+  const db = loadDB();
+  res.json(db);
+});
 // --- INTEGRACIÓN VITE ---
 async function startServer() {
  const isProduction = process.env.NODE_ENV === 'production';
