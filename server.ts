@@ -7,7 +7,7 @@ import path from 'path';
 import { createServer as createViteServer } from 'vite';
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const SECRET_KEY = 'banantrack_secret_key_2026';
 const DB_FILE = './db.json';
 
@@ -584,7 +584,7 @@ async function startServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on ${PORT}`);
   });
 }
 
