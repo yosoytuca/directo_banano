@@ -578,8 +578,8 @@ async function startServer() {
   }
 
   // EL PUERTO: Sin 'localhost', solo el número y 0.0.0.0
-  app.listen(Number(PORT), '0.0.0.0', () => {
-    console.log(`>>> BANANTRACK ACTIVO EN PUERTO: ${PORT}`);
+  app.listen(PORT, () => {
+  console.log(`>>> BANANTRACK ACTIVO EN PUERTO: ${PORT}`);
   });
 }
 
