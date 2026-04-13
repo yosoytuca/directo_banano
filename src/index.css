@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-2px);
+  transition: all 0.2s ease-in-out;
+}
+
+.clickable-card {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.clickable-card:hover {
+  transform: scale(1.02);
+}
+
+/* Colores de cinta */
+.bg-lila { background-color: #c8a2c8 !important; }
+.bg-blanco { background-color: #ffffff !important; color: black !important; }
+.bg-verde { background-color: #28a745 !important; }
+.bg-azul { background-color: #007bff !important; }
+.bg-roja { background-color: #dc3545 !important; }
+.bg-amarilla { background-color: #ffc107 !important; color: black !important; }
+.bg-cafe { background-color: #6f4e37 !important; }
+.bg-negro { background-color: #000000 !important; }
+
+.bg-cosecha-lista {
+  background-color: #fff9c4 !important;
+  color: #856404 !important;
+  border: 1px solid #ffeeba !important;
+}
+
+.color-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8em;
+  font-weight: bold;
+  border: 1px solid rgba(0,0,0,0.1);
+}
